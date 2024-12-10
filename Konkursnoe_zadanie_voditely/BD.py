@@ -25,6 +25,11 @@ CREATE TABLE IF NOT EXISTS drivers (
 """)
 conn.commit()
 
+try:
+    cursor.execute("ALTER TABLE drivers ADD COLUMN photo_path TEXT;")
+except sqlite3.OperationalError:
+    pass
+
 wb = load_workbook("drivers.xlsx")
 sheet = wb.active
 
